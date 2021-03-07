@@ -1,27 +1,81 @@
 /*Script部分*/
 $(function(){
-        var selectedItem = $("ul.select_box li.selected").text()
-        var selectBox = $("ul.select_box")
-        var selectItems = $("ul.select_box li")
-        var display = $(".display_selectedItem")
 
-        display.text(selectedItem)
-        $("li.selected").css("background","#fff");
+	function selectbox1() {
+			var selectedItem = $("ul.select_box li.selected").text()
+			var selectBox = $("ul.select_box")
+			var selectItems = $("ul.select_box li")
+			var display = $(".display_selectedItem")
 
-        $("#sort_area dt").on("click", function() {
-            $(this).toggleClass("ac");
-            $(this).next();
-            selectBox.slideToggle();
-        });
+			display.text(selectedItem)
+			$("li.selected").css("background","#fff");
 
-        selectItems.on("click",function(){
-            selectItems.removeClass("selected").css("background","#fff");
-            $(this).addClass("selected").css("background","#fff");
-            selectedItem = $("li.selected").text()
-            selectBox.hide();
-            display.text(selectedItem)
+			if(navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)){
+				display.on("click", function() {
+					$("#sort_area dt").toggleClass("ac");
+					$("#sort_area dt").next();
+					selectBox.slideToggle();
+				});
+			} else {
+				$("#sort_area dt").on("click", function() {
+					$(this).toggleClass("ac");
+					$(this).next();
+					selectBox.slideToggle();
+				});
+			}
+
+			selectItems.on("click",function(){
+				selectItems.removeClass("selected").css("background","#fff");
+				$(this).addClass("selected").css("background","#fff");
+				selectedItem = $("li.selected").text()
+				$("#sort_area dt").toggleClass("ac");
+				$("#sort_area dt").next();
+				selectBox.hide();
+				display.text(selectedItem)
+			})
+	}
+
+	function selectbox2() {	
+	
+        var selectedItem2 = $("ul.select_box2 li.selected2").text()
+        var selectBox2 = $("ul.select_box2")
+        var selectItems2 = $("ul.select_box2 li")
+        var display2 = $(".display_selectedItem2")
+
+        display2.text(selectedItem2)
+        $("li.selected2").css("background","#fff");
+        
+        if(navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)){
+            display2.on("click", function() {
+                $("#filter_area dt").toggleClass("ac");
+                $("#filter_area dt").next();
+                selectBox2.slideToggle();
+            });
+        } else {
+            $("#filter_area dt").on("click", function() {
+                $(this).toggleClass("ac");
+                $(this).next();
+                selectBox2.slideToggle();
+            });
+        }
+
+        selectItems2.on("click",function(){
+            selectItems2.removeClass("selected2").css("background","#fff");
+            $(this).addClass("selected2").css("background","#fff");
+            selectedItem2 = $("li.selected2").text()
+            $("#filter_area dt").toggleClass("ac");
+            $("#filter_area dt").next();
+            selectBox2.hide();
+            display2.text(selectedItem2)
         })
+
+	}
+	
+	selectbox1();
+	selectbox2();
+	
 })
+
 
 /*html部分*/
 /*
